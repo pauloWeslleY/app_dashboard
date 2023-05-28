@@ -1,7 +1,11 @@
-export function App() {
+import GlobalStyles from './styles/GlobalStyles'
+import { Dashboard } from './pages/Dashboard'
+
+export const App: React.FC = () => {
   return (
     <>
-      <h1>Hello World</h1>
+      <GlobalStyles />
+      <Dashboard />
     </>
   )
 }
