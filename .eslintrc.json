@@ -11,7 +11,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "quotes": "single",
+    "quotes": "error",
     "semi": "off",
     "strict": "off",
     "camelcase": "off"
