@@ -7,7 +7,7 @@ export const Grid = styled.div`
 
   grid-template-areas:
     'Aside MainHeader'
-    'Aside Content';
+    'Aside Main';
 
   height: 100vh;
 `
