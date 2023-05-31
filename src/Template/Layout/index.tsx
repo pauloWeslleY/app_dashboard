@@ -1,16 +1,20 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { Grid } from './styles'
 
 import { MainHeader } from '../../components/MainHeader'
 import { Aside } from '../../components/Aside'
-import { Content } from '../../components/Content'
+import { ContentHero } from '../../components/ContentHero'
 
-export const Layout: React.FC = () => {
+interface LayoutProps {
+  children: ReactNode
+}
+
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Grid>
       <MainHeader />
       <Aside />
-      <Content />
+      <ContentHero>{children}</ContentHero>
     </Grid>
   )
 }

@@ -21,7 +21,7 @@ export const Aside: React.FC = () => {
     <Container>
       <Header>
         <Logotipo src={Logo} alt={'Logotipo do App'} />
-        <Title>Minha Carteira</Title>
+        <Title>My Wallet</Title>
       </Header>
 
       <MenuHero>
