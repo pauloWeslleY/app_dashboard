@@ -66,7 +66,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
         <HistoryFinanceCard
           title="Conta de Luz"
           subtitle="31/07/2020"
-          amount="R$ 170,30"
+          amount="R$ 482,30"
           tagColor="#E44C4E"
         />
       </HeroListContent>
