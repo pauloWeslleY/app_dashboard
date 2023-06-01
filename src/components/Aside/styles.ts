@@ -30,7 +30,7 @@ export const MenuHero = styled.nav`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 28px;
 `
 
 export const MenuHeroItems = styled.a`

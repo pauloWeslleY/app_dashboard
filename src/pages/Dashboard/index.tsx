@@ -14,6 +14,7 @@ export const Dashboard: React.FC = () => {
     { value: '01', label: 'Day1' },
     { value: '02', label: 'Day2' },
   ]
+
   return (
     <Container>
       <NavHeader title="Dashboard" lineColor="#F7931B">
