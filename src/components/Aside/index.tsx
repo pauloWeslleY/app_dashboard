@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  MdDashboard,
-  MdArrowDownward,
-  MdArrowUpward,
-  MdExitToApp,
-} from 'react-icons/md'
+
 import {
   Container,
   Header,
@@ -14,6 +9,7 @@ import {
   Title,
 } from './styles'
 
+import { MENU_ITEMS } from './[menu_items]/[menu_items_props]'
 import Logo from '../../assets/logo.svg'
 
 export const Aside: React.FC = () => {
@@ -25,21 +21,12 @@ export const Aside: React.FC = () => {
       </Header>
 
       <MenuHero>
-        <MenuHeroItems href="/dashboard">
-          <MdDashboard />
-          Dashboard
-        </MenuHeroItems>
-        <MenuHeroItems href="/list/entry-balance">
-          <MdArrowDownward /> Entradas
-        </MenuHeroItems>
-        <MenuHeroItems href="/list/out-balance">
-          <MdArrowUpward />
-          Saídas
-        </MenuHeroItems>
-        <MenuHeroItems href="#">
-          <MdExitToApp />
-          Sair
-        </MenuHeroItems>
+        {MENU_ITEMS.map((item, i) => (
+          <MenuHeroItems key={i} href={item.path}>
+            {item.icon}
+            {item.label}
+          </MenuHeroItems>
+        ))}
       </MenuHero>
     </Container>
   )

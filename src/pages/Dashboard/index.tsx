@@ -18,8 +18,8 @@ export const Dashboard: React.FC = () => {
   return (
     <Container>
       <NavHeader title="Dashboard" lineColor="#F7931B">
-        <SelectInput options={options} />
-        <SelectInput options={days} />
+        <SelectInput options={options} onHandleChange={() => {}} />
+        <SelectInput options={days} onHandleChange={() => {}} />
       </NavHeader>
     </Container>
   )
