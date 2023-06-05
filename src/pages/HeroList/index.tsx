@@ -1,12 +1,12 @@
 import { useMemo, useState, useEffect } from 'react'
 import { NavHeader } from '../../components/NavHeader'
 import { SelectInput } from '../../components/SelectInput'
-
-import { Container, HeroListContent, Filters } from './styles'
 import { HistoryFinanceCard } from '../../components/HistoryOutFinanceCard'
 import { formatValueCurrency } from '../../utils/formatValueCurrency'
 import { dateFormat } from '../../utils/dateFormat'
+import { Container, HeroListContent, Filters } from './styles'
 
+import listOfMonths from '../../utils/months'
 import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses'
 
@@ -53,20 +53,34 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
     return type === 'entry-balance' ? gains : expenses
   }, [type])
 
-  const MONTHS = [
-    { value: 1, label: 'Janeiro' },
-    { value: 5, label: 'Maio' },
-    { value: 7, label: 'Julho' },
-    { value: 6, label: 'Junho' },
-  ]
+  const MONTHS = useMemo(() => {
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month,
+      }
+    })
+  }, [])
 
-  const YEARS = [
-    { value: 2019, label: 2019 },
-    { value: 2018, label: 2018 },
-    { value: 2020, label: 2020 },
-    { value: 2021, label: 2021 },
-    { value: 2023, label: 2023 },
-  ]
+  const YEARS = useMemo(() => {
+    let uniqueYears: number[] = []
+
+    dataList.forEach((item) => {
+      const date = new Date(item.date)
+      const year = date.getFullYear()
+
+      if (!uniqueYears.includes(year)) {
+        uniqueYears.push(year)
+      }
+    })
+
+    return uniqueYears.map((year) => {
+      return {
+        value: year,
+        label: year,
+      }
+    })
+  }, [dataList])
 
   useEffect(() => {
     const dateFiltered = dataList.filter((item) => {
@@ -79,7 +93,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
 
     const response = dateFiltered.map((item) => {
       return {
-        id: String(new Date().getTime()) + item.amount,
+        id: crypto.randomUUID(),
         description: item.description,
         amountFormatted: formatValueCurrency(Number(item.amount)),
         frequency: item.frequency,
