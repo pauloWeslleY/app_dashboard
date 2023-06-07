@@ -64,9 +64,37 @@ export default [
   },
   {
     description: 'Salário',
+    amount: '2800.12',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2023-06-10',
+  },
+  {
+    description: 'Freela E-commerce',
+    amount: '2800.12',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2023-06-10',
+  },
+  {
+    description: 'Freela System',
+    amount: '2800.12',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2023-06-10',
+  },
+  {
+    description: 'Salário',
     amount: '2500.00',
     type: 'entrada',
     frequency: 'recorrente',
     date: '2020-07-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.00',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2023-07-10',
   },
 ]

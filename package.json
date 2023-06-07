@@ -15,8 +15,7 @@
     "react-icons": "^4.9.0",
     "react-router-dom": "^5.2.0",
     "react-switch": "^7.0.0",
-    "styled-components": "^5.3.11",
-    "uuidv4": "^6.2.13"
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
