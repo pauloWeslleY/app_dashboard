@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import { NavHeader } from '../../components/NavHeader'
 import { SelectInput } from '../../components/SelectInput'
-import { HistoryFinanceCard } from '../../components/HistoryOutFinanceCard'
+import { HistoryFinanceCard } from './components/HistoryOutFinanceCard'
 import { formatValueCurrency } from '../../utils/formatValueCurrency'
 import { dateFormat } from '../../utils/dateFormat'
 import { Container, HeroListContent, Filters } from './styles'
@@ -9,6 +9,7 @@ import { Container, HeroListContent, Filters } from './styles'
 import listOfMonths from '../../utils/months'
 import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses'
+import { currentMonth, currentYear } from '../../constants/yearAndMonth'
 
 interface IRouteParamsProps {
   match: {
@@ -28,8 +29,6 @@ interface IData {
 }
 
 export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
-  const currentMonth = new Date().getMonth() + 1
-  const currentYear = new Date().getFullYear()
   const [monthSelected, setMonthSelected] = useState<number>(currentMonth)
   const [yearSelected, setYearSelected] = useState<number>(currentYear)
   const [isData, setIsData] = useState<IData[]>([])

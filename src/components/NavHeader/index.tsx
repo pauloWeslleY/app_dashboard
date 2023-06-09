@@ -8,11 +8,9 @@ interface INavHeaderProps {
   children?: ReactNode
 }
 
-export const NavHeader: React.FC<INavHeaderProps> = ({
-  title,
-  lineColor,
-  children,
-}) => {
+export const NavHeader: React.FC<INavHeaderProps> = (props) => {
+  const { title, lineColor, children } = props
+
   return (
     <Container>
       <TitleWrapper lineColor={lineColor}>

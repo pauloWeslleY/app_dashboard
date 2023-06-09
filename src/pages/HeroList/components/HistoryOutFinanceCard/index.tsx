@@ -9,12 +9,8 @@ interface IHistoryFinanceCardProps {
   amount: string
 }
 
-const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({
-  tagColor,
-  title,
-  subtitle,
-  amount,
-}) => {
+const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = (props) => {
+  const { tagColor, title, subtitle, amount } = props
   return (
     <Container>
       <TagCard color={tagColor} />
