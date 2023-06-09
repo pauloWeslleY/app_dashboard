@@ -3,6 +3,7 @@ import { NavHeader } from '../../components/NavHeader'
 import { SelectInput } from '../../components/SelectInput'
 import { CardWalletHero } from './components/CardWalletHero'
 import { MessageHero } from './components/MessageHero'
+import { PieChartHero } from './components/PieChartHero'
 import { currentMonth, currentYear } from '../../constants/yearAndMonth'
 import expenses from '../../repositories/expenses'
 import gains from '../../repositories/gains'
@@ -100,7 +101,7 @@ export const Dashboard: React.FC = () => {
           'Verifique seus gastos e tente cortar algumas algumas coisas desnecessárias.',
         icon: SadIcon,
       }
-    } else if (allBalance == 0) {
+    } else if (allBalance === 0) {
       return {
         title: 'Ufa...!',
         description: 'Neste mês, você gastou exatamente o que ganhou!',
@@ -180,6 +181,7 @@ export const Dashboard: React.FC = () => {
           footerText={message.footerText}
           icon={message.icon}
         />
+        <PieChartHero />
       </ContentHero>
     </Container>
   )

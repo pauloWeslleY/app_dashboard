@@ -8,10 +8,10 @@ export const Container = styled.div<IContainerProps>`
   background-color: ${(props) => props.color};
   color: ${(props) => props.theme.colors.white};
 
-  width: 30%;
+  width: 32%;
   height: 157px;
 
-  margin: 27px 0;
+  margin: 37px 0;
   padding: 21px 14px;
 
   border-radius: 10px;
