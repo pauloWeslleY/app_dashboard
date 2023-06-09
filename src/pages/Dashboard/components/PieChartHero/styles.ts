@@ -35,14 +35,15 @@ export const Legend = styled.li<ILegendsProps>`
   font-size: 18px;
 
   > div {
-    width: 45px;
-    height: 45px;
+    width: 45%;
+    height: 45%;
 
     font-weight: 700;
     font-size: 17px;
 
     text-align: center;
     line-height: 45px;
+    padding-inline: 8px;
 
     background-color: ${(props) => props.color};
     border-radius: 7px;
@@ -61,4 +62,8 @@ export const SideLeft = styled.aside`
   }
 `
 
-export const SideRight = styled.main``
+export const SideRight = styled.main`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+`
