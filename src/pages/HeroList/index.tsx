@@ -64,7 +64,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
   const YEARS = useMemo(() => {
     let uniqueYears: number[] = []
 
-    data.forEach((item) => {
+    data.forEach(item => {
       const date = new Date(item.date)
       const year = date.getFullYear()
 
@@ -73,7 +73,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
       }
     })
 
-    return uniqueYears.map((year) => {
+    return uniqueYears.map(year => {
       return {
         value: year,
         label: year,
@@ -83,16 +83,16 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
 
   const handleFrequencyClick = (frequency: string) => {
     const alreadySelected = selectedFilterFrequency.findIndex(
-      (item) => item === frequency
+      item => item === frequency
     )
 
     if (alreadySelected >= 0) {
       const filtered = selectedFilterFrequency.filter(
-        (item) => item !== frequency
+        item => item !== frequency
       )
       setSelectedFilterFrequency(filtered)
     } else {
-      setSelectedFilterFrequency((prev) => [...prev, frequency])
+      setSelectedFilterFrequency(prev => [...prev, frequency])
     }
   }
 
@@ -121,7 +121,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
   }
 
   useEffect(() => {
-    const dateFiltered = data.filter((item) => {
+    const dateFiltered = data.filter(item => {
       const date = new Date(item.date)
       const month = date.getMonth() + 1
       const year = date.getFullYear()
@@ -133,7 +133,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
       )
     })
 
-    const response = dateFiltered.map((item) => {
+    const response = dateFiltered.map(item => {
       return {
         id: crypto.randomUUID(),
         description: item.description,
@@ -158,12 +158,12 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
         <SelectInput
           options={MONTHS}
           defaultValue={monthSelected}
-          onHandleChange={(e) => handleMonthSelected(e.target.value)}
+          onHandleChange={e => handleMonthSelected(e.target.value)}
         />
         <SelectInput
           options={YEARS}
           defaultValue={yearSelected}
-          onHandleChange={(e) => handleYearSelected(e.target.value)}
+          onHandleChange={e => handleYearSelected(e.target.value)}
         />
       </NavHeader>
 
@@ -191,7 +191,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
       </Filters>
 
       <HeroListContent>
-        {isData.map((item) => (
+        {isData.map(item => (
           <HistoryFinanceCard
             key={item.id}
             title={item.description}

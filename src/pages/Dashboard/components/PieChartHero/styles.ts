@@ -10,8 +10,8 @@ export const Container = styled.div`
 
   margin: 10px 0;
 
-  background-color: ${(props) => props.theme.colors.tertiary};
-  color: ${(props) => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.tertiary};
+  color: ${props => props.theme.colors.white};
 
   border-radius: 7px;
 
@@ -45,7 +45,7 @@ export const Legend = styled.li<ILegendsProps>`
     line-height: 45px;
     padding-inline: 8px;
 
-    background-color: ${(props) => props.color};
+    background-color: ${props => props.color};
     border-radius: 7px;
   }
 

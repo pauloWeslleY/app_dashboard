@@ -4,12 +4,12 @@ import { SelectInput } from '../../components/SelectInput'
 import { CardWalletHero } from './components/CardWalletHero'
 import { MessageHero } from './components/MessageHero'
 import { PieChartHero } from './components/PieChartHero'
+import { HistoryBox } from './components/HistoryBox'
 import { currentMonth, currentYear } from '../../constants/yearAndMonth'
+import { Container, ContentHero } from './styles'
 import expenses from '../../repositories/expenses'
 import gains from '../../repositories/gains'
 import listOfMonths from '../../utils/months'
-
-import { Container, ContentHero } from './styles'
 import HappyIcon from '../../assets/happy.svg'
 import SadIcon from '../../assets/sad.svg'
 import GrinningIcon from '../../assets/grinning.svg'
@@ -22,7 +22,7 @@ export const Dashboard: React.FC = () => {
     let uniqueYears: number[] = []
     const dataList = [...expenses, ...gains]
 
-    dataList.forEach((item) => {
+    dataList.forEach(item => {
       const date = new Date(item.date)
       const year = date.getFullYear()
 
@@ -31,7 +31,7 @@ export const Dashboard: React.FC = () => {
       }
     })
 
-    return uniqueYears.map((year) => {
+    return uniqueYears.map(year => {
       return {
         value: year,
         label: year,
@@ -51,7 +51,7 @@ export const Dashboard: React.FC = () => {
   const allGains = useMemo(() => {
     let all: number = 0
 
-    gains.forEach((item) => {
+    gains.forEach(item => {
       const date = new Date(item.date)
       const year = date.getFullYear()
       const month = date.getMonth() + 1
@@ -71,7 +71,7 @@ export const Dashboard: React.FC = () => {
   const allExpenses = useMemo(() => {
     let all: number = 0
 
-    expenses.forEach((item) => {
+    expenses.forEach(item => {
       const date = new Date(item.date)
       const year = date.getFullYear()
       const month = date.getMonth() + 1
@@ -142,12 +142,64 @@ export const Dashboard: React.FC = () => {
     return data
   }, [allGains, allExpenses])
 
+  const historyDataGraphics = useMemo(() => {
+    return listOfMonths
+      .map((_, month) => {
+        let amountEntry = 0
+        gains.forEach(gain => {
+          const date = new Date(gain.date)
+          const gainMonth = date.getMonth()
+          const gainYear = date.getFullYear()
+
+          if (gainMonth === month && gainYear === yearSelected) {
+            try {
+              amountEntry += Number(gain.amount)
+            } catch (err) {
+              throw new Error(`Amount entry is invalid: ${err}`)
+            }
+          }
+        })
+
+        let amountOutput = 0
+        expenses.forEach(expense => {
+          const date = new Date(expense.date)
+          const expenseMonth = date.getMonth()
+          const expenseYear = date.getFullYear()
+
+          if (expenseMonth === month && expenseYear === yearSelected) {
+            try {
+              amountOutput += Number(expense.amount)
+            } catch (err) {
+              throw new Error(`Amount output is invalid: ${err}`)
+            }
+          }
+        })
+
+        return {
+          monthNumber: month,
+          month: listOfMonths[month].slice(0, 3),
+          amountEntry,
+          amountOutput,
+        }
+      })
+      .filter(item => {
+        const currentMonth = new Date().getMonth()
+        const currentYear = new Date().getFullYear()
+
+        const filteredYears =
+          (yearSelected === currentYear && item.monthNumber <= currentMonth) ||
+          yearSelected < currentYear
+
+        return filteredYears
+      })
+  }, [yearSelected])
+
   const handleMonthSelected = (month: string) => {
     try {
       const parseMonth = Number(month)
       setMonthSelected(parseMonth)
     } catch (error) {
-      console.error('Invalid Month value, Is accept 0 - 24')
+      console.error('Invalid Month value')
       throw new Error(error)
     }
   }
@@ -168,12 +220,12 @@ export const Dashboard: React.FC = () => {
         <SelectInput
           options={MONTHS}
           defaultValue={monthSelected}
-          onHandleChange={(e) => handleMonthSelected(e.target.value)}
+          onHandleChange={e => handleMonthSelected(e.target.value)}
         />
         <SelectInput
           options={YEARS}
           defaultValue={yearSelected}
-          onHandleChange={(e) => handleYearSelected(e.target.value)}
+          onHandleChange={e => handleYearSelected(e.target.value)}
         />
       </NavHeader>
 
@@ -207,6 +259,12 @@ export const Dashboard: React.FC = () => {
         />
 
         <PieChartHero data={relationExpensesAndGains} />
+
+        <HistoryBox
+          data={historyDataGraphics}
+          lineColorAmountEntry="#F7931B"
+          lineColorAmountOutput="#E44C4E"
+        />
       </ContentHero>
     </Container>
   )
