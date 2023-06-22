@@ -5,6 +5,7 @@ import { CardWalletHero } from './components/CardWalletHero'
 import { MessageHero } from './components/MessageHero'
 import { PieChartHero } from './components/PieChartHero'
 import { HistoryBox } from './components/HistoryBox'
+import { BarChartHero } from './components/BarChartHero'
 import { currentMonth, currentYear } from '../../constants/yearAndMonth'
 import { Container, ContentHero } from './styles'
 import expenses from '../../repositories/expenses'
@@ -13,6 +14,7 @@ import listOfMonths from '../../utils/months'
 import HappyIcon from '../../assets/happy.svg'
 import SadIcon from '../../assets/sad.svg'
 import GrinningIcon from '../../assets/grinning.svg'
+import OpsIcon from '../../assets/ops.svg'
 
 export const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(currentMonth)
@@ -101,6 +103,14 @@ export const Dashboard: React.FC = () => {
           'Verifique seus gastos e tente cortar algumas algumas coisas desnecessárias.',
         icon: SadIcon,
       }
+    } else if (allGains === 0 && allExpenses === 0) {
+      return {
+        title: 'Ops!',
+        description: 'Neste mês, não há registro de entradas ou saídas.',
+        footerText:
+          'Parece que você não fez nenhum registros no mês e ano selecionado',
+        icon: OpsIcon,
+      }
     } else if (allBalance === 0) {
       return {
         title: 'Ufa...!',
@@ -116,25 +126,25 @@ export const Dashboard: React.FC = () => {
         icon: HappyIcon,
       }
     }
-  }, [allBalance])
+  }, [allBalance, allGains, allExpenses])
 
   const relationExpensesAndGains = useMemo(() => {
     const all = allGains + allExpenses
 
-    const percentGains = (allGains / all) * 100
-    const percentExpenses = (allExpenses / all) * 100
+    const percentGains = Number(((allGains / all) * 100).toFixed(1))
+    const percentExpenses = Number(((allExpenses / all) * 100).toFixed(1))
 
     const data = [
       {
         name: 'Entradas',
         value: allGains,
-        percent: Number(percentGains.toFixed(1)),
+        percent: percentGains ? percentGains : 0,
         color: '#F7931B',
       },
       {
         name: 'Saídas',
         value: allExpenses,
-        percent: Number(percentExpenses.toFixed(1)),
+        percent: percentExpenses ? percentExpenses : 0,
         color: '#E44C4E',
       },
     ]
@@ -193,6 +203,98 @@ export const Dashboard: React.FC = () => {
         return filteredYears
       })
   }, [yearSelected])
+
+  const relationExpenseRecurrentOfEventual = useMemo(() => {
+    let amountRecurrent = 0
+    let amountEventual = 0
+
+    expenses
+      .filter(expense => {
+        const date = new Date(expense.date)
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+
+        return month === monthSelected && year === yearSelected
+      })
+      .forEach(expense => {
+        if (expense.frequency === 'recorrente') {
+          return (amountRecurrent += Number(expense.amount))
+        }
+
+        if (expense.frequency === 'eventual') {
+          return (amountEventual += Number(expense.amount))
+        }
+      })
+
+    const allAmount = amountRecurrent + amountEventual
+    const percentEventual = Number(
+      ((amountEventual / allAmount) * 100).toFixed(1)
+    )
+    const percentRecurrent = Number(
+      ((amountRecurrent / allAmount) * 100).toFixed(1)
+    )
+
+    return [
+      {
+        name: 'Recorrentes',
+        amount: amountRecurrent,
+        percent: percentRecurrent ? percentRecurrent : 0,
+        color: '#F7931B',
+      },
+      {
+        name: 'Eventuais',
+        amount: amountEventual,
+        percent: percentEventual ? percentEventual : 0,
+        color: '#E44C4E',
+      },
+    ]
+  }, [monthSelected, yearSelected])
+
+  const relationGainsRecurrentOfEventual = useMemo(() => {
+    let amountRecurrent = 0
+    let amountEventual = 0
+
+    gains
+      .filter(gain => {
+        const date = new Date(gain.date)
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+
+        return month === monthSelected && year === yearSelected
+      })
+      .forEach(gain => {
+        if (gain.frequency === 'recorrente') {
+          return (amountRecurrent += Number(gain.amount))
+        }
+
+        if (gain.frequency === 'eventual') {
+          return (amountEventual += Number(gain.amount))
+        }
+      })
+
+    const allAmount = amountRecurrent + amountEventual
+    const percentEventual = Number(
+      ((amountEventual / allAmount) * 100).toFixed(1)
+    )
+    const percentRecurrent = Number(
+      ((amountRecurrent / allAmount) * 100).toFixed(1)
+    )
+
+    return [
+      {
+        name: 'Recorrentes',
+        amount: amountRecurrent,
+        percent: percentRecurrent ? percentRecurrent : 0,
+        color: '#F7931B',
+      },
+      {
+        name: 'Eventuais',
+        amount: amountEventual,
+        percent: percentEventual ? percentEventual : 0,
+        color: '#E44C4E',
+      },
+    ]
+  }, [monthSelected, yearSelected])
 
   const handleMonthSelected = (month: string) => {
     try {
@@ -264,6 +366,16 @@ export const Dashboard: React.FC = () => {
           data={historyDataGraphics}
           lineColorAmountEntry="#F7931B"
           lineColorAmountOutput="#E44C4E"
+        />
+
+        <BarChartHero
+          title="Saídas"
+          data={relationExpenseRecurrentOfEventual}
+        />
+
+        <BarChartHero
+          title="Entradas"
+          data={relationGainsRecurrentOfEventual}
         />
       </ContentHero>
     </Container>
