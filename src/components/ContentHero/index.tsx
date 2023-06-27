@@ -5,10 +5,8 @@ interface ContentHeroProps {
   children: ReactNode
 }
 
-export const ContentHero: React.FC<ContentHeroProps> = ({ children }) => {
-  return (
-    <Container>
-      <div>{children}</div>
-    </Container>
-  )
-}
+export const ContentHero: React.FC<ContentHeroProps> = ({ children }) => (
+  <Container>
+    <div>{children}</div>
+  </Container>
+)

@@ -7,7 +7,7 @@ export const Container = styled.div`
 `
 
 export const ToggleLabel = styled.span`
-  color: ${(props) => props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
 `
 
 export const SwitchButton = styled(Switch).attrs<ReactSwitchProps>(

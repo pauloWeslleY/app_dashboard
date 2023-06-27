@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { NavHeader } from '../../components/NavHeader'
 import { SelectInput } from '../../components/SelectInput'
 import { CardWalletHero } from './components/CardWalletHero'
@@ -296,25 +296,23 @@ export const Dashboard: React.FC = () => {
     ]
   }, [monthSelected, yearSelected])
 
-  const handleMonthSelected = (month: string) => {
+  const handleMonthSelected = useCallback((month: string) => {
     try {
       const parseMonth = Number(month)
       setMonthSelected(parseMonth)
     } catch (error) {
-      console.error('Invalid Month value')
-      throw new Error(error)
+      throw new Error(`Invalid Month value ${error}`)
     }
-  }
+  }, [])
 
-  const handleYearSelected = (year: string) => {
+  const handleYearSelected = useCallback((year: string) => {
     try {
       const parseYear = Number(year)
       setYearSelected(parseYear)
     } catch (error) {
-      console.error('Invalid Month value, Is accept 0 - 24')
-      throw new Error(error)
+      throw new Error(`Invalid Month value, Is accept 0 - 24 ${error}`)
     }
-  }
+  }, [])
 
   return (
     <Container>

@@ -9,12 +9,10 @@ interface LayoutProps {
   children: ReactNode
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return (
-    <Grid>
-      <MainHeader />
-      <Aside />
-      <ContentHero>{children}</ContentHero>
-    </Grid>
-  )
-}
+export const Layout: React.FC<LayoutProps> = ({ children }) => (
+  <Grid>
+    <MainHeader />
+    <Aside />
+    <ContentHero>{children}</ContentHero>
+  </Grid>
+)
