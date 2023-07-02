@@ -11,12 +11,12 @@ export default createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.colors.secondary};
+      background-color: ${props => props.theme.colors.secondary};
       border-radius: 10px;
     }
 
     ::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.colors.tertiary};
+      background-color: ${props => props.theme.colors.tertiary};
     }
   }
 

@@ -1,10 +1,5 @@
 import { ReactElement } from 'react'
-import {
-  MdArrowDownward,
-  MdArrowUpward,
-  MdDashboard,
-  MdExitToApp,
-} from 'react-icons/md'
+import { MdArrowDownward, MdArrowUpward, MdDashboard } from 'react-icons/md'
 
 interface IMenuItemsProps {
   path: string
@@ -14,23 +9,18 @@ interface IMenuItemsProps {
 
 export const MENU_ITEMS: IMenuItemsProps[] = [
   {
-    path: '/dashboard',
+    path: '/',
     label: 'Dashboard',
     icon: <MdDashboard />,
   },
   {
     path: '/list/entry-balance',
     label: 'Entradas',
-    icon: <MdArrowDownward />,
+    icon: <MdArrowUpward />,
   },
   {
     path: '/list/out-balance',
     label: 'Saídas',
-    icon: <MdArrowUpward />,
-  },
-  {
-    path: '#',
-    label: 'Sair',
-    icon: <MdExitToApp />,
+    icon: <MdArrowDownward />,
   },
 ]

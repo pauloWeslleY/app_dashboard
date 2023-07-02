@@ -1,14 +1,13 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { Dashboard } from '../pages/Dashboard'
 import { HeroList } from '../pages/HeroList'
+import { Layout } from '../components/Layout'
 
-export const AppRoutes: React.FC = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/list/:type" component={HeroList} />
-      </Switch>
-    </Router>
-  )
-}
+export const AppRoutes: React.FC = () => (
+  <Layout>
+    <Switch>
+      <Route path="/" exact component={Dashboard} />
+      <Route path="/list/:type" component={HeroList} />
+    </Switch>
+  </Layout>
+)

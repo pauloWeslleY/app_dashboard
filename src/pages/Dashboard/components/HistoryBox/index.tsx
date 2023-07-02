@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
+import { formatValueCurrency } from '../../../../utils/formatValueCurrency'
 
 import {
   Container,
@@ -14,7 +15,6 @@ import {
   LegendContainer,
   Legend,
 } from './styles'
-import { formatValueCurrency } from '../../../../utils/formatValueCurrency'
 
 interface HistoryBoxProps {
   data: {

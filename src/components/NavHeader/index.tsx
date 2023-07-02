@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-
 import { Container, TitleWrapper, Controllers } from './styles'
 
 interface INavHeaderProps {
@@ -8,7 +7,7 @@ interface INavHeaderProps {
   children?: ReactNode
 }
 
-export const NavHeader: React.FC<INavHeaderProps> = (props) => {
+export const NavHeader: React.FC<INavHeaderProps> = props => {
   const { title, lineColor, children } = props
 
   return (

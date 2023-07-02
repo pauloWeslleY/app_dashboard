@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Container, TagCard } from './styles'
 
 interface IHistoryFinanceCardProps {
@@ -9,7 +7,7 @@ interface IHistoryFinanceCardProps {
   amount: string
 }
 
-const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = (props) => {
+const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = props => {
   const { tagColor, title, subtitle, amount } = props
   return (
     <Container>

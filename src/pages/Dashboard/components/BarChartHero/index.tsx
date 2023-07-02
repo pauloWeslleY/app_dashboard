@@ -1,5 +1,5 @@
 import { ResponsiveContainer, BarChart, Bar, Cell, Tooltip } from 'recharts'
-
+import { formatValueCurrency } from '../../../../utils/formatValueCurrency'
 import {
   Container,
   SideLeft,
@@ -7,7 +7,6 @@ import {
   LegendsContainer,
   Legend,
 } from './styles'
-import { formatValueCurrency } from '../../../../utils/formatValueCurrency'
 
 interface IBarChartProps {
   title: string

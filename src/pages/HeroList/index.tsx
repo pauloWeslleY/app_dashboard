@@ -4,12 +4,12 @@ import { SelectInput } from '../../components/SelectInput'
 import { HistoryFinanceCard } from './components/HistoryOutFinanceCard'
 import { formatValueCurrency } from '../../utils/formatValueCurrency'
 import { dateFormat } from '../../utils/dateFormat'
+import { currentMonth, currentYear } from '../../constants/yearAndMonth'
 import { Container, HeroListContent, Filters } from './styles'
 
 import listOfMonths from '../../utils/months'
 import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses'
-import { currentMonth, currentYear } from '../../constants/yearAndMonth'
 
 interface IRouteParamsProps {
   match: {

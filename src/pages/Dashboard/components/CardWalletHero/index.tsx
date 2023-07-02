@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import CountUp from 'react-countup'
 
 import { Container } from './styles'
-
 import DollarIcon from '../../../../assets/dollar.svg'
 import ArrowUpIcon from '../../../../assets/arrowUp.svg'
 import ArrowDownIcon from '../../../../assets/arrowDown.svg'
@@ -15,7 +14,7 @@ interface ICardWalletHeroProps {
   color: string
 }
 
-const CardWalletHero: React.FC<ICardWalletHeroProps> = (props) => {
+const CardWalletHero: React.FC<ICardWalletHeroProps> = props => {
   const { title, amount, footerLabel, icon, color } = props
 
   const iconSelected = useMemo(() => {
