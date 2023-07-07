@@ -50,6 +50,7 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
           data: expenses,
         }
   }, [paramsType])
+
   const { data } = pageData
 
   const MONTHS = useMemo(() => {

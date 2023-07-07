@@ -1,11 +1,25 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 interface ITagCardProps {
   color: string
 }
 
+const animate = keyframes`
+  0%{
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50%{
+    opacity: .3;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`
+
 export const Container = styled.li`
-  background-color: ${(props) => props.theme.colors.tertiary};
+  background-color: ${props => props.theme.colors.tertiary};
 
   list-style: none;
   border-radius: 10px;
@@ -19,6 +33,8 @@ export const Container = styled.li`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   position: relative;
+
+  animation: ${animate} 0.5s ease-in;
 
   &:hover {
     opacity: 0.7;
@@ -57,5 +73,5 @@ export const TagCard = styled.div<ITagCardProps>`
   width: 14px;
   height: 60%;
 
-  background-color: ${(props) => props.color};
+  background-color: ${props => props.color};
 `

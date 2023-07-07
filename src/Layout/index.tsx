@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import { MainHeader } from '../MainHeader'
-import { Aside } from '../Aside'
-import { ContentHero } from '../ContentHero'
+import { MainHeader } from '../components/MainHeader'
+import { Aside } from '../components/Aside'
+import { ContentHero } from '../components/ContentHero'
 
 import { Grid } from './styles'
 

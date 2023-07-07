@@ -7,7 +7,6 @@ import EMOJIS from '../../utils/emojis'
 
 export const MainHeader: React.FC = () => {
   const { theme, onHandleToggleTheme } = useThemeContext()
-  const [checked, setChecked] = useState<boolean>(true)
   const [darkTheme, setDarkTheme] = useState(() =>
     theme.title === 'dark' ? true : false
   )
@@ -15,12 +14,6 @@ export const MainHeader: React.FC = () => {
   const handleChangeTheme = () => {
     setDarkTheme(!darkTheme)
     onHandleToggleTheme()
-
-    if (checked === false) {
-      setChecked(true)
-    } else {
-      setChecked(false)
-    }
   }
 
   const emoji = useMemo(() => {
@@ -33,7 +26,7 @@ export const MainHeader: React.FC = () => {
       <Toggle
         labelLeft="Light"
         labelRight="Dark"
-        checked={checked}
+        checked={darkTheme}
         onChange={handleChangeTheme}
       />
 

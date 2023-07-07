@@ -1,8 +1,22 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 interface ILegendsProps {
   color: string
 }
+
+const animate = keyframes`
+  0%{
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50%{
+    opacity: .3;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`
 
 export const Container = styled.div`
   width: 48%;
@@ -16,6 +30,16 @@ export const Container = styled.div`
   color: ${props => props.theme.colors.white};
 
   border-radius: 10px;
+
+  animation: ${animate} 0.5s ease-in;
+
+  @media (max-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 25rem;
+  }
 `
 
 export const SideLeft = styled.aside`
@@ -36,10 +60,14 @@ export const SideRight = styled.main`
 export const LegendsContainer = styled.ul`
   list-style: none;
 
-  max-height: 175px;
+  height: 175px;
   padding-right: 15px;
 
   overflow-y: scroll;
+
+  @media (max-width: 1200px) {
+    height: auto;
+  }
 `
 
 export const Legend = styled.li<ILegendsProps>`

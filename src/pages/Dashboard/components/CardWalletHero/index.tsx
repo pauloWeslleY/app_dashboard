@@ -34,9 +34,10 @@ const CardWalletHero: React.FC<ICardWalletHeroProps> = props => {
     <Container color={color}>
       <span>{title}</span>
       <h1>
+        <strong>R$ </strong>
         <CountUp
           end={amount}
-          prefix={'R$ '}
+          // prefix={'R$ '}
           separator="."
           decimal=","
           decimals={2}
