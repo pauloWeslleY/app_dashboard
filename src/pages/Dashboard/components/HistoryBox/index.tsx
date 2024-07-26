@@ -36,11 +36,11 @@ const HistoryBox: React.FC<HistoryBoxProps> = props => {
 
         <LegendContainer>
           <Legend color={lineColorAmountEntry}>
-            <div></div>
+            <div />
             <span>Entradas</span>
           </Legend>
           <Legend color={lineColorAmountOutput}>
-            <div></div>
+            <div />
             <span>Saídas</span>
           </Legend>
         </LegendContainer>

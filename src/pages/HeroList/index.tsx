@@ -40,15 +40,15 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
   const pageData = useMemo(() => {
     return paramsType === 'entry-balance'
       ? {
-          title: 'Entradas',
-          lineColor: '#4E41F0',
-          data: gains,
-        }
+        title: 'Entradas',
+        lineColor: '#4E41F0',
+        data: gains,
+      }
       : {
-          title: 'Saídas',
-          lineColor: '#E44C4E',
-          data: expenses,
-        }
+        title: 'Saídas',
+        lineColor: '#E44C4E',
+        data: expenses,
+      }
   }, [paramsType])
 
   const { data } = pageData
@@ -134,16 +134,14 @@ export const HeroList: React.FC<IRouteParamsProps> = ({ match }) => {
       )
     })
 
-    const response = dateFiltered.map(item => {
-      return {
-        id: crypto.randomUUID(),
-        description: item.description,
-        amountFormatted: formatValueCurrency(Number(item.amount)),
-        frequency: item.frequency,
-        dateFormatted: dateFormat(item.date),
-        tagColor: item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E',
-      }
-    })
+    const response = dateFiltered.map(item => ({
+      id: crypto.randomUUID(),
+      description: item.description,
+      amountFormatted: formatValueCurrency(Number(item.amount)),
+      frequency: item.frequency,
+      dateFormatted: dateFormat(item.date),
+      tagColor: item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E',
+    }))
     setIsData(response)
   }, [
     data,

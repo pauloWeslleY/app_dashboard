@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { ResponsiveContainer, BarChart, Bar, Cell, Tooltip } from 'recharts'
 import { formatValueCurrency } from '../../../../utils/formatValueCurrency'
 import {
@@ -18,7 +19,7 @@ interface IBarChartProps {
   }[]
 }
 
-export const BarChartHero: React.FC<IBarChartProps> = ({ title, data }) => (
+export const BarChartHero: FC<IBarChartProps> = ({ title, data }) => (
   <Container>
     <SideLeft>
       <h2>{title}</h2>

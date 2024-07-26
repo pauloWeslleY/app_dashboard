@@ -20,20 +20,16 @@ const animate = keyframes`
 
 export const Container = styled.li`
   background-color: ${props => props.theme.colors.tertiary};
-
   list-style: none;
   border-radius: 10px;
   margin: 10px 0;
   padding: 12px 10px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   position: relative;
-
   animation: ${animate} 0.5s ease-in;
 
   &:hover {
@@ -69,9 +65,7 @@ export const Container = styled.li`
 export const TagCard = styled.div<ITagCardProps>`
   position: absolute;
   left: 0;
-
   width: 14px;
   height: 60%;
-
   background-color: ${props => props.color};
 `

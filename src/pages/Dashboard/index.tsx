@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react'
+import { useMemo, useState, useCallback, FC } from 'react'
 import { NavHeader } from '../../components/NavHeader'
 import { SelectInput } from '../../components/SelectInput'
 import { CardWalletHero } from './components/CardWalletHero'
@@ -16,7 +16,7 @@ import SadIcon from '../../assets/sad.svg'
 import GrinningIcon from '../../assets/grinning.svg'
 import OpsIcon from '../../assets/ops.svg'
 
-export const Dashboard: React.FC = () => {
+export const Dashboard: FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(currentMonth)
   const [yearSelected, setYearSelected] = useState<number>(currentYear)
 

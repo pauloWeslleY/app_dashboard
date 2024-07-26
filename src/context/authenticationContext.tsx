@@ -10,7 +10,6 @@ const AuthenticationContext = createContext<IAuthContext>({} as IAuthContext)
 const AuthenticationProvider: React.FC<IAuthProviderProps> = ({ children }) => {
   const [logged, setLogged] = useState<boolean>(() => {
     const isLogged = localStorage.getItem('@my_wallet:logged')
-
     return !!isLogged
   })
 
